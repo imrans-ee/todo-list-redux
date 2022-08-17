@@ -7,6 +7,7 @@ import Row from "react-bootstrap/Row";
 import { addTodo } from "./Actions";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useSelector, useDispatch } from "react-redux";
+import { deleteItem } from "./Actions";
 
 const Home = () => {
   const [show, setShow] = useState(false);
@@ -21,6 +22,7 @@ const Home = () => {
 
   const list = useSelector((state) => state.todoReducers.list);
 
+  console.log(list)
   const handleClose = () => {
     console.log("clicked");
     console.log(title);
@@ -164,16 +166,18 @@ const Home = () => {
 
         {list.map((e) => {
           return (
-            <div>
-              <ListGroup key={e.id}>
+            <div key={e.id}>
+              <ListGroup  >
                 <ListGroup.Item>{e.data.title}</ListGroup.Item>
                 <ListGroup.Item>{e.data.priority}</ListGroup.Item>
                 <ListGroup.Item>{e.data.description}</ListGroup.Item>
                 <ListGroup.Item>{e.data.date}</ListGroup.Item>
                 <ListGroup.Item>{e.data.completed}</ListGroup.Item>
+                <button onClick={()=>dispatch(deleteItem(e.id))}> delete</button>
+                <hr />
               </ListGroup>
-              <hr />
-            </div>
+            
+            </div >
           );
         })}
       </div>

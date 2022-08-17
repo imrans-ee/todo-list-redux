@@ -8,8 +8,28 @@ export const addTodo =(data)=>{
     }
 }
 
-export const deleteTodo =()=>{
+export const deleteItem =(id)=>{
     return{
-        type:"DELETE_TODO"
+        type:"DELETE_TODO",
+        id
     }
+}
+
+// login
+
+export const login =(userName,password)=>{
+  
+    console.log(userName,password)
+    if(userName==="imran" && password==123){
+    
+    return{
+        
+        type:"SIGN_IN",
+        payload:{
+            userName:userName,
+            password:password,
+        }
+    }
+}
+
 }
